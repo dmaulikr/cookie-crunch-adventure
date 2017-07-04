@@ -40,20 +40,22 @@ class GameScene: SKScene {
         gameLayer.addChild(cookiesLayer)
         
     }
-}
-
-func addSprites(for cookies: Set<Cookie>) {
-    for cookie in cookies {
-        let sprite = SKSpriteNode(imageNamed: cookie.cookieType.spriteName)
-        sprite.size = CGSize(width: TileWidth, height: TileHeight)
-        sprite.position = pointFor(column: cookie.column, row: cookie.row)
-        cookiesLayer.addChild(sprite)
-        cookie.sprite = sprite
+    
+    func addSprites(for cookies: Set<Cookie>) {
+        for cookie in cookies {
+            let sprite = SKSpriteNode(imageNamed: cookie.cookieType.spriteName)
+            sprite.size = CGSize(width: TileWidth, height: TileHeight)
+            sprite.position = pointFor(column: cookie.column, row: cookie.row)
+            cookiesLayer.addChild(sprite)
+            cookie.sprite = sprite
+        }
     }
+    
+    func pointFor(column: Int, row: Int) -> CGPoint {
+        return CGPoint(
+            x: CGFloat(column)*TileWidth + TileWidth/2,
+            y: CGFloat(row)*TileHeight + TileHeight/2)
+    }
+
 }
 
-func pointFor(column: Int, row: Int) -> CGPoint {
-    return CGPoint(
-        x: CGFloat(column)*TileWidth + TileWidth/2,
-        y: CGFloat(row)*TileHeight + TileHeight/2)
-}
