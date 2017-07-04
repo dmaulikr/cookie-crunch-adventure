@@ -26,9 +26,7 @@ class GameViewController: UIViewController {
     // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        // MARK: Level
-        level = Level()
-        scene.level = level
+        
         // MARK: Configure the view
         let skView = view as! SKView
         skView.isMultipleTouchEnabled = false
@@ -37,6 +35,9 @@ class GameViewController: UIViewController {
         scene = GameScene(size: skView.bounds.size)
         scene.scaleMode = .aspectFill
         
+        // MARK: Level
+        level = Level(filename: "Level_1")
+        scene.level = level
         // MARK: Present the scene.
         skView.presentScene(scene)
         
