@@ -11,12 +11,24 @@ import SpriteKit
 
 
 class GameViewController: UIViewController {
+    // Properties
     var scene: GameScene!
+    var level: Level!
+    // MARK: - Functions
+    func beginGame() {
+        shuffle()
+    }
     
+    func shuffle() {
+        let newCookies = level.shuffle()
+        scene.addSprites(for: newCookies)
+    }
     // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // MARK: Level
+        level = Level()
+        scene.level = level
         // MARK: Configure the view
         let skView = view as! SKView
         skView.isMultipleTouchEnabled = false
@@ -27,6 +39,9 @@ class GameViewController: UIViewController {
         
         // MARK: Present the scene.
         skView.presentScene(scene)
+        
+        // MARK: Game 
+        beginGame()
     }
 
     override var shouldAutorotate: Bool {
