@@ -9,12 +9,14 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    // Properties
+    // MARK: - Properties
+    // MARK: level
     var level: Level!
-    
+    // MARK: tiles
     let TileWidth: CGFloat = 32.0
     let TileHeight: CGFloat = 36.0
-    
+    let tilesLayer = SKNode()
+    // MARK: layers
     let gameLayer = SKNode()
     let cookiesLayer = SKNode()
     
@@ -36,11 +38,13 @@ class GameScene: SKScene {
             x: -TileWidth * CGFloat(NumColumns) / 2,
             y: -TileHeight * CGFloat(NumRows) / 2)
         
+        tilesLayer.position = layerPosition
+        gameLayer.addChild(tilesLayer)
         cookiesLayer.position = layerPosition
         gameLayer.addChild(cookiesLayer)
         
     }
-    
+    // MARK: - Functions
     func addSprites(for cookies: Set<Cookie>) {
         for cookie in cookies {
             let sprite = SKSpriteNode(imageNamed: cookie.cookieType.spriteName)
@@ -56,6 +60,22 @@ class GameScene: SKScene {
             x: CGFloat(column)*TileWidth + TileWidth/2,
             y: CGFloat(row)*TileHeight + TileHeight/2)
     }
+    
+    func addTiles() {
+        for row in 0..<NumRows {
+            for column in 0..<NumColumns {
+                if level.tileAt(column: column, row: row) != nil {
+                    let tileNode = SKSpriteNode(imageNamed: "Tile")
+                    tileNode.size = CGSize(width: TileWidth, height: TileHeight)
+                    tileNode.position = pointFor(column: column, row: row)
+                    tilesLayer.addChild(tileNode)
+                }
+            }
+        }
+    }
 
 }
+
+
+
 

@@ -11,12 +11,7 @@ import Foundation
 let NumColumns = 9
 let NumRows = 9
 private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
-// MARK: - Functions 
-func tileAt(column: Int, row: Int) -> Tile? {
-    assert(column >= 0 && column < NumColumns)
-    assert(row >= 0 && row < NumRows)
-    return tiles[column, row]
-}
+
 // MARK: - Level class
 class Level {
     fileprivate var cookies = Array2D<Cookie>(columns: NumColumns, rows: NumRows)
@@ -30,6 +25,11 @@ class Level {
     /// Fills the level with ramdom cookies
     func shuffle() -> Set<Cookie> {
         return createInitialCookies()
+    }
+    func tileAt(column: Int, row: Int) -> Tile? {
+        assert(column >= 0 && column < NumColumns)
+        assert(row >= 0 && row < NumRows)
+        return tiles[column, row]
     }
     // TODO: Explain 1...4 with comments
     private func createInitialCookies() -> Set<Cookie> {
@@ -55,6 +55,7 @@ class Level {
     }
     
     // MARK: - Init 
+    // TODO: EXPLAIN 1...5
     init(filename: String) {
         // 1
         guard let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename: filename) else { return }
