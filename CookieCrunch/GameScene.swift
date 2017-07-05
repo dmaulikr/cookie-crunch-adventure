@@ -8,22 +8,24 @@
 
 import SpriteKit
 
+// MARK: - class
 class GameScene: SKScene {
     // MARK: - Properties
-    // MARK: level
+    // level
     var level: Level!
-    // MARK: tiles
+    // tiles
     let TileWidth: CGFloat = 32.0
     let TileHeight: CGFloat = 36.0
     let tilesLayer = SKNode()
-    // MARK: layers
+    // layers
     let gameLayer = SKNode()
     let cookiesLayer = SKNode()
-    // MARK: swipes
+    // swipes
     private var swipeFromColumn: Int?
     private var swipeFromRow: Int?
     var swipeHandler: ((Swap) -> ())?
-    
+    // highlighted
+    var selectionSprite = SKSpriteNode()
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder) is not used in this app")
     }
@@ -52,6 +54,26 @@ class GameScene: SKScene {
         
     }
     // MARK: - Functions
+    // TODO: Explain functions
+    func hideSelectionIndicator() {
+        selectionSprite.run(SKAction.sequence([
+            SKAction.fadeOut(withDuration: 0.3),
+            SKAction.removeFromParent()]))
+    }
+    func showSelectionIndicatorForCookie(cookie: Cookie) {
+        if selectionSprite.parent != nil {
+            selectionSprite.removeFromParent()
+        }
+        
+        if let sprite = cookie.sprite {
+            let texture = SKTexture(imageNamed: cookie.cookieType.highlightedSpriteName)
+            selectionSprite.size = CGSize(width: TileWidth, height: TileHeight)
+            selectionSprite.run(SKAction.setTexture(texture))
+            
+            sprite.addChild(selectionSprite)
+            selectionSprite.alpha = 1.0
+        }
+    }
     func addSprites(for cookies: Set<Cookie>) {
         for cookie in cookies {
             let sprite = SKSpriteNode(imageNamed: cookie.cookieType.spriteName)
@@ -101,6 +123,7 @@ class GameScene: SKScene {
                 // 4
                 swipeFromColumn = column
                 swipeFromRow = row
+                showSelectionIndicatorForCookie(cookie: cookie)
             }
         }
     }
@@ -131,7 +154,7 @@ class GameScene: SKScene {
             // 4
             if horzDelta != 0 || vertDelta != 0 {
                 trySwap(horizontal: horzDelta, vertical: vertDelta)
-                
+                hideSelectionIndicator()
                 // 5
                 swipeFromColumn = nil
             }
@@ -175,6 +198,9 @@ class GameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if selectionSprite.parent != nil && swipeFromColumn != nil {
+            hideSelectionIndicator()
+        }
         swipeFromColumn = nil
         swipeFromRow = nil
     }
