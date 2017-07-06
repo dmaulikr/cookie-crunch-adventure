@@ -89,12 +89,12 @@
 				4215F1901F0B2E9900BC6A10 /* GameViewController.swift */,
 				4215F1A61F0C037C00BC6A10 /* Level.swift */,
 				42C44BA11F0C1F8500BE2E44 /* Tile.swift */,
+				42C44BA51F0C598100BE2E44 /* Swap.swift */,
 				4215F1951F0B2E9900BC6A10 /* Assets.xcassets */,
 				4215F1921F0B2E9900BC6A10 /* Main.storyboard */,
 				4215F1971F0B2E9900BC6A10 /* LaunchScreen.storyboard */,
 				4215F19A1F0B2E9900BC6A10 /* Info.plist */,
 				4215F1A01F0BF37000BC6A10 /* Sprites.atlas */,
-				42C44BA51F0C598100BE2E44 /* Swap.swift */,
 			);
 			path = CookieCrunch;
 			sourceTree = "<group>";
