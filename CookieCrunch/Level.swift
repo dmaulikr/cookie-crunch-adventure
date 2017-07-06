@@ -39,8 +39,16 @@ class Level {
         for row in 0..<NumRows {
             for column in 0..<NumColumns {
                 if tiles[column, row] != nil {
-                // 2
-                var cookieType = CookieType.random()
+                // Picks the cookie type randomly and makes sure it never creates a chain of three or more.
+                    var cookieType: CookieType
+                    repeat {
+                        cookieType = CookieType.random()
+                    } while (column >= 2 &&
+                        cookies[column - 1, row]?.cookieType == cookieType &&
+                        cookies[column - 2, row]?.cookieType == cookieType)
+                    || (row >= 2 &&
+                        cookies[column, row - 1]?.cookieType == cookieType &&
+                        cookies[column, row - 2]?.cookieType == cookieType)
                 
                 // 3
                 let cookie = Cookie(column: column, row: row, cookieType: cookieType)
