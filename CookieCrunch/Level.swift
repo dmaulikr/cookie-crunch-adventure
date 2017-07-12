@@ -17,12 +17,20 @@ class Level {
     fileprivate var cookies = Array2D<Cookie>(columns: NumColumns, rows: NumRows)
     
     // MARK: - Functions
+    private func removeCookies(chains: Set<Chain>) {
+        for chain in chains {
+            for cookie in chain.cookies {
+                cookies[cookie.column, cookie.row] = nil
+            }
+        }
+    }
+    
     func removeMatches() -> Set<Chain> {
         let horizontalChains = detectHorizontalMatches()
         let verticalChains = detectVerticalMatches()
         
-        print("Horizontal matches: \(horizontalChains)")
-        print("Vertical matches: \(verticalChains)")
+        removeCookies(chains: horizontalChains)
+        removeCookies(chains: verticalChains)
         
         return horizontalChains.union(verticalChains)
     }
