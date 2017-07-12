@@ -17,6 +17,40 @@ class Level {
     fileprivate var cookies = Array2D<Cookie>(columns: NumColumns, rows: NumRows)
     
     // MARK: - Functions
+    func topUpCookies() -> [[Cookie]] {
+        var columns = [[Cookie]]()
+        var cookieType: CookieType = .unknown
+        
+        for column in 0..<NumColumns {
+            var array = [Cookie]()
+            
+            // 1
+            var row = NumRows - 1
+            while row >= 0 && cookies[column, row] == nil {
+                // 2
+                if tiles[column, row] != nil {
+                    // 3
+                    var newCookieType: CookieType
+                    repeat {
+                        newCookieType = CookieType.random()
+                    } while newCookieType == cookieType
+                    cookieType = newCookieType
+                    // 4
+                    let cookie = Cookie(column: column, row: row, cookieType: cookieType)
+                    cookies[column, row] = cookie
+                    array.append(cookie)
+                }
+                
+                row -= 1
+            }
+            // 5
+            if !array.isEmpty {
+                columns.append(array)
+            }
+        }
+        return columns
+    }
+    
     func fillHoles() -> [[Cookie]] {
         var columns = [[Cookie]]()
         // 1

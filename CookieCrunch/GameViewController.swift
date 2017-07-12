@@ -17,14 +17,24 @@ class GameViewController: UIViewController {
     // MARK: - Functions
     func handleMatches() {
         let chains = level.removeMatches()
+        if chains.count == 0 {
+            beginNextTurn()
+            return
+        }
         scene.animateMatchedCookies(for: chains) {
             let columns = self.level.fillHoles()
             self.scene.animateFallingCookies(columns: columns) {
-                self.view.isUserInteractionEnabled = true
+                let columns = self.level.topUpCookies()
+                self.scene.animateNewCookies(columns) {
+                    self.handleMatches()
+                }
             }
         }
     }
-    
+    func beginNextTurn() {
+        level.detectPossibleSwaps()
+        view.isUserInteractionEnabled = true
+    }
     func beginGame() {
         shuffle()
     }
