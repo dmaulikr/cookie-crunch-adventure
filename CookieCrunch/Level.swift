@@ -17,6 +17,71 @@ class Level {
     fileprivate var cookies = Array2D<Cookie>(columns: NumColumns, rows: NumRows)
     
     // MARK: - Functions
+    func removeMatches() -> Set<Chain> {
+        let horizontalChains = detectHorizontalMatches()
+        let verticalChains = detectVerticalMatches()
+        
+        print("Horizontal matches: \(horizontalChains)")
+        print("Vertical matches: \(verticalChains)")
+        
+        return horizontalChains.union(verticalChains)
+    }
+    private func detectHorizontalMatches() -> Set<Chain> {
+        // 1
+        var set = Set<Chain>()
+        // 2
+        for row in 0..<NumRows {
+            var column = 0
+            while column < NumColumns-2 {
+                // 3
+                if let cookie = cookies[column, row] {
+                    let matchType = cookie.cookieType
+                    // 4
+                    if cookies[column + 1, row]?.cookieType == matchType &&
+                        cookies[column + 2, row]?.cookieType == matchType {
+                        // 5
+                        let chain = Chain(chainType: .horizontal)
+                        repeat {
+                            chain.add(cookie: cookies[column, row]!)
+                            column += 1
+                        } while column < NumColumns && cookies[column, row]?.cookieType == matchType
+                        
+                        set.insert(chain)
+                        continue
+                    }
+                }
+                // 6
+                column += 1
+            }
+        }
+        return set
+    }
+    private func detectVerticalMatches() -> Set<Chain> {
+        var set = Set<Chain>()
+        
+        for column in 0..<NumColumns {
+            var row = 0
+            while row < NumRows-2 {
+                if let cookie = cookies[column, row] {
+                    let matchType = cookie.cookieType
+                    
+                    if cookies[column, row + 1]?.cookieType == matchType &&
+                        cookies[column, row + 2]?.cookieType == matchType {
+                        let chain = Chain(chainType: .vertical)
+                        repeat {
+                            chain.add(cookie: cookies[column, row]!)
+                            row += 1
+                        } while row < NumRows && cookies[column, row]?.cookieType == matchType
+                        
+                        set.insert(chain)
+                        continue
+                    }
+                }
+                row += 1
+            }
+        }
+        return set
+    }
     func cookieAt(column: Int, row: Int) -> Cookie? {
         assert(column >= 0 && column < NumColumns)
         assert(row >= 0 && row < NumRows)

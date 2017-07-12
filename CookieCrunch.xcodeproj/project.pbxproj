@@ -23,6 +23,7 @@
 		425B72B71F15A4CC0094C961 /* Ka-Ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 425B72B11F15A4CB0094C961 /* Ka-Ching.wav */; };
 		425B72B81F15A4CC0094C961 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 425B72B21F15A4CB0094C961 /* Mining by Moonlight.mp3 */; };
 		425B72B91F15A4CC0094C961 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = 425B72B31F15A4CB0094C961 /* Scrape.wav */; };
+		425B72BB1F15A6860094C961 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425B72BA1F15A6860094C961 /* Chain.swift */; };
 		42C44B9C1F0C1F0400BE2E44 /* Level_0.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C44B971F0C1F0400BE2E44 /* Level_0.json */; };
 		42C44B9D1F0C1F0400BE2E44 /* Level_1.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C44B981F0C1F0400BE2E44 /* Level_1.json */; };
 		42C44B9E1F0C1F0400BE2E44 /* Level_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C44B991F0C1F0400BE2E44 /* Level_2.json */; };
@@ -52,6 +53,7 @@
 		425B72B11F15A4CB0094C961 /* Ka-Ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ka-Ching.wav"; sourceTree = "<group>"; };
 		425B72B21F15A4CB0094C961 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
 		425B72B31F15A4CB0094C961 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
+		425B72BA1F15A6860094C961 /* Chain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		42C44B971F0C1F0400BE2E44 /* Level_0.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_0.json; sourceTree = "<group>"; };
 		42C44B981F0C1F0400BE2E44 /* Level_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_1.json; sourceTree = "<group>"; };
 		42C44B991F0C1F0400BE2E44 /* Level_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_2.json; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				4215F1881F0B2E9900BC6A10 /* AppDelegate.swift */,
 				4215F1A41F0C009800BC6A10 /* Array2D.swift */,
 				4215F1A21F0BF82A00BC6A10 /* Cookie.swift */,
+				425B72BA1F15A6860094C961 /* Chain.swift */,
 				42C44BA31F0C208E00BE2E44 /* Extensions.swift */,
 				4215F18E1F0B2E9900BC6A10 /* GameScene.swift */,
 				4215F1901F0B2E9900BC6A10 /* GameViewController.swift */,
@@ -228,6 +231,7 @@
 				4215F1A31F0BF82A00BC6A10 /* Cookie.swift in Sources */,
 				42C44BA41F0C208E00BE2E44 /* Extensions.swift in Sources */,
 				42C44BA21F0C1F8500BE2E44 /* Tile.swift in Sources */,
+				425B72BB1F15A6860094C961 /* Chain.swift in Sources */,
 				4215F1911F0B2E9900BC6A10 /* GameViewController.swift in Sources */,
 				4215F1891F0B2E9900BC6A10 /* AppDelegate.swift in Sources */,
 				4215F1A51F0C009800BC6A10 /* Array2D.swift in Sources */,
