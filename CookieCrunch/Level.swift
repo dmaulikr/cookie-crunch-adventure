@@ -20,6 +20,12 @@ class Level {
     var targetScore = 0
     var maximumMoves = 0
     // MARK: - Functions
+    private func calculateScore(for chains: Set<Chain>) {
+        // 3-chain is 60 points, 4-chain is 120, 5-chain is 180, and so on.
+        for chain in chains {
+            chain.score = 60 * (chain.length - 2)
+        }
+    }
     func topUpCookies() -> [[Cookie]] {
         var columns = [[Cookie]]()
         var cookieType: CookieType = .unknown
@@ -99,6 +105,9 @@ class Level {
         
         removeCookies(chains: horizontalChains)
         removeCookies(chains: verticalChains)
+        
+        calculateScore(for: horizontalChains)
+        calculateScore(for: verticalChains)
         
         return horizontalChains.union(verticalChains)
     }
