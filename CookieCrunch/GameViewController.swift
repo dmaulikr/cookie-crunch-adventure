@@ -14,7 +14,20 @@ class GameViewController: UIViewController {
     // Properties
     var scene: GameScene!
     var level: Level!
+    var movesLeft = 0
+    var score = 0
+    
+    // MARK: - Outlets
+    @IBOutlet weak var targetLabel: UILabel!
+    @IBOutlet weak var movesLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     // MARK: - Functions
+    func updateLabels() {
+        targetLabel.text = String(format: "%ld", level.targetScore)
+        movesLabel.text = String(format: "%ld", movesLeft)
+        scoreLabel.text = String(format: "%ld", score)
+    }
     func handleMatches() {
         let chains = level.removeMatches()
         if chains.count == 0 {

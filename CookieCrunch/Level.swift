@@ -12,10 +12,13 @@ let NumColumns = 9
 let NumRows = 9
 private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
 private var possibleSwaps = Set<Swap>()
+
 // MARK: - Level class
 class Level {
+    // properties
     fileprivate var cookies = Array2D<Cookie>(columns: NumColumns, rows: NumRows)
-    
+    var targetScore = 0
+    var maximumMoves = 0
     // MARK: - Functions
     func topUpCookies() -> [[Cookie]] {
         var columns = [[Cookie]]()
@@ -311,6 +314,8 @@ class Level {
                 }
             }
         }
+        targetScore = dictionary["targetScore"] as! Int
+        maximumMoves = dictionary["moves"] as! Int
     }
     // MARK: - Functions Not in class
     func performSwap(swap: Swap) {
