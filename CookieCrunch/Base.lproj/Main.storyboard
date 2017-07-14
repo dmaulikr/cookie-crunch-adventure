@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -89,15 +89,25 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xiW-kA-KPq">
+                                <rect key="frame" x="0.0" y="255.66666666666669" width="414" height="225.00000000000006"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="225" id="HfD-Sx-OJh"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="xiW-kA-KPq" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leading" id="5yr-hg-Uuc"/>
+                            <constraint firstItem="xiW-kA-KPq" firstAttribute="centerY" secondItem="3se-qz-xqx" secondAttribute="centerY" id="Bp5-PJ-czb"/>
                             <constraint firstItem="A8a-Mv-1Cd" firstAttribute="leading" secondItem="3se-qz-xqx" secondAttribute="leadingMargin" constant="8" id="E3c-KO-6zW"/>
                             <constraint firstItem="A8a-Mv-1Cd" firstAttribute="top" secondItem="8aa-yV-Osq" secondAttribute="bottom" constant="20" id="U5X-dy-0J9"/>
+                            <constraint firstAttribute="trailing" secondItem="xiW-kA-KPq" secondAttribute="trailing" id="hOh-4T-Kes"/>
                             <constraint firstAttribute="trailingMargin" secondItem="A8a-Mv-1Cd" secondAttribute="trailing" constant="8" id="qN4-hg-wLU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="gameOverPanel" destination="xiW-kA-KPq" id="F7m-bZ-juJ"/>
                         <outlet property="movesLabel" destination="U3C-dK-MAY" id="1j5-ny-gM8"/>
                         <outlet property="scoreLabel" destination="ahh-cD-PAR" id="Tk4-XI-Yd8"/>
                         <outlet property="targetLabel" destination="JaK-ri-Jq7" id="mB3-30-zcb"/>
@@ -105,7 +115,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
+            <point key="canvasLocation" x="117.39130434782609" y="122.28260869565219"/>
         </scene>
     </scenes>
 </document>

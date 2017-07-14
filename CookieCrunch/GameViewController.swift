@@ -16,16 +16,42 @@ class GameViewController: UIViewController {
     var level: Level!
     var movesLeft = 0
     var score = 0
-    
+    var tapGestureRecognizer: UITapGestureRecognizer!
     // MARK: - Outlets
     @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var movesLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet weak var gameOverPanel: UIImageView!
     
     // MARK: - Functions
+    @objc func hideGameOver() {
+        view.removeGestureRecognizer(tapGestureRecognizer)
+        tapGestureRecognizer = nil
+        
+        gameOverPanel.isHidden = true
+        scene.isUserInteractionEnabled = true
+        
+        beginGame()
+    }
+    
+    func showGameOver() {
+        gameOverPanel.isHidden = false
+        scene.isUserInteractionEnabled = false
+        
+        self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.hideGameOver))
+        self.view.addGestureRecognizer(self.tapGestureRecognizer)
+    }
+    
     func decrementMoves() {
         movesLeft -= 1
         updateLabels()
+        if score >= level.targetScore {
+            gameOverPanel.image = UIImage(named: "LevelComplete")
+            showGameOver()
+        } else if movesLeft == 0 {
+            gameOverPanel.image = UIImage(named: "GameOver")
+            showGameOver()
+        }
     }
     
     func updateLabels() {
@@ -89,7 +115,7 @@ class GameViewController: UIViewController {
     // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        gameOverPanel.isHidden = true
         // MARK: Configure the view
         let skView = view as! SKView
         skView.isMultipleTouchEnabled = false
