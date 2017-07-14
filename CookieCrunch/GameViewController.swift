@@ -23,6 +23,11 @@ class GameViewController: UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     
     // MARK: - Functions
+    func decrementMoves() {
+        movesLeft -= 1
+        updateLabels()
+    }
+    
     func updateLabels() {
         targetLabel.text = String(format: "%ld", level.targetScore)
         movesLabel.text = String(format: "%ld", movesLeft)
@@ -52,6 +57,7 @@ class GameViewController: UIViewController {
         level.resetComboMultiplier()
         level.detectPossibleSwaps()
         view.isUserInteractionEnabled = true
+        decrementMoves()
     }
     func beginGame() {
         movesLeft = level.maximumMoves
